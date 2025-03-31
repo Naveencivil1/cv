@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naveen Kappala | Civil & Geotechnical Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Slab:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-dark: #1b5e20;
+            --secondary: #00695c;
+            --accent: #ffab00;
+            --dark: #263238;
+            --light: #f5f5f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f9f9f9;
+            color: var(--dark);
+            overflow-x: hidden;
+            background-image: url('https://wallpaperaccess.com/full/1615863.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: -1;
+        }
+        
+        header {
+            background: linear-gradient(135deg, rgba(46,125,50,0.9) 0%, rgba(0,105,92,0.9) 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .profile-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+            object-position: center top;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .profile-pic:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+        
+        h1 {
+            font-family: 'Roboto Slab', serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-3px);
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+        
+        h2 {
+            font-family: 'Roboto Slab', serif;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .skill-category {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .skill-category h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .skill-category h3 i {
+            color: var(--primary);
+        }
+        
+        .skill-list {
+            list-style-type: none;
+        }
+        
+        .skill-list li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .skill-list li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        /* Project Image Carousel */
+        .project-images {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-images img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-images:hover img {
+            transform: scale(1.05);
+        }
+        
+        .project-nav {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+        
+        .project-nav-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+        }
+        
+        .project-nav-dot.active {
+            background: white;
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+        }
+        
+        .project-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-content p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        
+        .project-details {
+            margin-top: 1rem;
+        }
+        
+        .project-details li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .project-details li i {
+            color: var(--accent);
+            margin-right: 0.5rem;
+            margin-top: 0.2rem;
+        }
+        
+        /* Experience Section */
+        .experience-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--primary);
+        }
+        
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .experience-company {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .experience-date {
+            color: #666;
+        }
+        
+        .experience-role {
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Civil Engineering Contact Button */
+        .civil-contact-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .civil-contact-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+        
+        .civil-contact-btn i {
+            font-size: 1.2rem;
+        }
+        
+        .civil-elements {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        .element-1 {
+            top: 10%;
+            left: 5%;
+            font-size: 10rem;
+            color: var(--primary);
+        }
+        
+        .element-2 {
+            bottom: 10%;
+            right: 5%;
+            font-size: 8rem;
+            color: var(--secondary);
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        @media (max-width: 768px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+        
+        /* Animation classes */
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-float-2 {
+            animation: float 8s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+        
+        .animate-float-3 {
+            animation: float 7s ease-in-out infinite;
+            animation-delay: 2s;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    
+    <!-- Civil Engineering Elements (Icons) -->
+    <i class="fas fa-building civil-elements element-1 animate-float"></i>
+    <i class="fas fa-bridge civil-elements element-2 animate-float-2"></i>
+    
+    <!-- Header with Profile -->
+    <header>
+        <div class="header-content">
+            <div class="profile-container">
+                <img src="https://i.imgur.com/YPyosaM.jpeg" alt="Naveen Kappala" class="profile-pic pulse">
+            </div>
+            <h1>Naveen Kappala</h1>
+            <p class="tagline">Civil Engineering Professional</p>
+            <div class="contact-info">
+                <a href="mailto:naveenkappala076@gmail.com" class="contact-item">
+                    <i class="fas fa-envelope contact-icon"></i>
+                    naveenkappala076@gmail.com
+                </a>
+                <a href="tel:+12167768482" class="contact-item">
+                    <i class="fas fa-phone contact-icon"></i>
+                    (216) 776-8482
+                </a>
+                <a href="https://www.linkedin.com/in/naveen-kappala" target="_blank" class="contact-item">
+                    <i class="fab fa-linkedin contact-icon"></i>
+                    LinkedIn Profile
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- About Section - Added based on resume information -->
+        <section class="section">
+            <h2>About Me</h2>
+            <p style="margin-bottom: 1.5rem; line-height: 1.6;">
+                <strong>🔧 Versatile Civil Engineer | 🏢 Structural | ⛰️ Geotech | 🏗️ Construction Management | 🛣️ Highways | 💰 Estimation & Costing</strong>
+            </p>
+            <p style="line-height: 1.6;">
+                I am a qualified Civil Engineer with specialized skills in structural design, geotechnical analysis, water resources, construction management,highway engineering and 			<strong>project management</strong>. Equipped with a <strong>bachelor’s degree, Diploma in Civil Engineering, and a master’s in project management</strong>, I bring both 		technical precision and strategic oversight to infrastructure projects. What drives me is converting complex calculations into buildable solutions—whether designing 			resilient structures, optimizing construction workflows, or ensuring projects meet their quality, schedule and budget targets.
+            </p>
+	    <p style="line-height: 2.5;">
+		<strong>📜Core Competencies:</strong>
+	    </p>
+	    <p style="line-height: 1.6;">
+		<strong>✔ Structural Engineering</strong> – Proficient in STAAD Pro, IS 456 & AISC standards for resilient designs
+	    </p>
+	    <p style="line-height: 1.6;">
+		<strong>✔ Construction Management</strong> – Skilled in Primavera P6, Bluebeam, and OSHA-compliant execution
+	    </p>
+	    <p style="line-height: 1.6;">
+		<strong>✔ Cost Estimation</strong> – Bluebeam, Power BI for quantity take-offs & bid preparation
+	    </p>
+	    <p style="line-height: 1.6;">
+		<strong>✔ Geotechnical Engineering</strong> – Trained in soil analysis, foundation design, and slope stability
+	    </p>
+	    <p style="line-height: 1.6;">
+		<strong>✔ Highway/Roadworks</strong> – Knowledge of AASHTO standards, drainage design, and earthwork estimation
+	    </p>
+	    <p style="line-height: 2.5;">
+		<strong>💡 What Drives Me:</strong>
+	    </p>
+	    <p style="line-height: 1.6;">
+		To apply my <strong>analytical mindset</strong> and <strong>technical skills</strong> to real-world challenges, with particular interest in sustainable construction 			practices and cost-efficient designs. Eager to contribute to teams where I can grow while adding value through my fresh perspective and up-to-date training.
+	    </p>
+	    <p style="line-height: 3.0;">
+		🎯<i>Ready to work hard, learn quickly, and help build tomorrow's infrastructure.</i>
+	    </p>
+	    <p style="line-height: 1.6;">
+		🌉 <i>Open to roles where I can grow while adding value across the civil engineering spectrum.</i>
+	    </p>
+        </section>
+        
+        <!-- Skills Section - Updated with Procore and MS Project -->
+        <section class="section">
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-laptop-code"></i> Software Proficiency</h3>
+                    <ul class="skill-list">
+                        <li>AutoCAD</li>
+                        <li>STAAD Pro</li>
+                        <li>Civil 3D</li>
+                        <li>Primavera P6</li>
+                        <li>Procore</li>
+                        <li>Microsoft Project</li>
+                        <li>Bluebeam</li>
+                        <li>SketchUp</li>
+                        <li>Excel & Power BI</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-project-diagram"></i> Project Management</h3>
+                    <ul class="skill-list">
+                        <li>Cost Estimation</li>
+                        <li>Budget Management</li>
+                        <li>Project Scheduling</li>
+                        <li>Risk Management</li>
+                        <li>Contract Management</li>
+			<li>Procurement Management</li>
+			<li>Stakeholder Coordination</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-hard-hat"></i> Technical Expertise</h3>
+                    <ul class="skill-list">
+                        <li>Structural Analysis</li>
+                        <li>Geotechnical Evaluation</li>
+                        <li>Design Review</li>
+                        <li>Construction QC</li>
+                        <li>Site Supervision</li>
+			<li>Material Testing & Analysis</li>
+			<li>Foundation Engineering</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Experience Section -->
+        <section class="section">
+            <h2>Professional Experience</h2>
+            
+            <div class="experience-item">
+                <div class="experience-header">
+                    <span class="experience-company">Sugadhi Constructions Pvt. Ltd, India</span>
+                    <span class="experience-date">Nov 2018 - May 2019</span>
+                </div>
+                <div class="experience-role">Junior Estimation Engineer</div>
+                <ul class="skill-list">
+                    <li>Prepared cost estimates and structural designs for residential buildings</li>
+                    <li>Utilized AutoCAD for drawings and Excel for design reviews</li>
+                    <li>Coordinated with subcontractors for precise cost estimation</li>
+                    <li>Maintained budget adherence through cost control measures</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Projects with Multiple Images -->
+        <section class="section">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-images">
+                        <img src="https://i.imgur.com/uk96aMQ.jpeg">
+                        <img src="https://i.imgur.com/gktXDag.jpeg">
+                        <div class="project-nav">
+                            <div class="project-nav-dot active"></div>
+                            <div class="project-nav-dot"></div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Post-Tensioning Case Study</h3>
+                        <p>Comprehensive study on post-tensioning techniques for high-rise buildings</p>
+                        <ul class="project-details">
+                            <li><i class="fas fa-check-circle"></i>Delivered 18-22% cost savings by replacing conventional slabs with optimized post-tensioned systems.</li>
+                            <li><i class="fas fa-check-circle"></i>Enabled 12m column-free spans using high-strength PC Strands and precision duct layouts.</li>
+			    <li><i class="fas fa-check-circle"></i>Engineered durable M-50 concrete (440kg cement/m³) for 30+ year lifespan in high-rises.</li>
+			    <li><i class="fas fa-check-circle"></i>Solved retrofit flexibility concerns with adjustable tendon spacing and cutting protocols.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-images">
+                        <img src="https://i.imgur.com/DdnMGGU.jpeg">
+                        <img src="https://i.imgur.com/0aeO6na.jpeg">
+                        <div class="project-nav">
+                            <div class="project-nav-dot active"></div>
+                            <div class="project-nav-dot"></div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Residential Building Design (G+4)</h3>
+                        <p>Complete analysis and design of a G+4 residential building</p>
+                        <ul class="project-details">
+                            <li><i class="fas fa-check-circle"></i>Designed a G+4 residential building (1400 sqm, 72 columns) using STAAD Pro, compliant with IS 456 standards.</li>
+                            <li><i class="fas fa-check-circle"></i>Verified structural integrity with 95% alignment between manual calculations and STAAD Pro analysis results.</li>
+			    <li><i class="fas fa-check-circle"></i>Achieved 15% steel reduction in beams/slabs through STAAD Pro optimization while meeting IS 456 deflection limits.</li>
+			    <li><i class="fas fa-check-circle"></i>Developed constructible drawings with clear reinforcement detailing for error-free site execution.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-images">
+                        <img src="https://i.imgur.com/sU99H0d.jpeg">
+                        <img src="https://i.imgur.com/u714c71.jpeg">
+                        <div class="project-nav">
+                            <div class="project-nav-dot active"></div>
+                            <div class="project-nav-dot"></div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Southwood Plantation Road Realignment</h3>
+                        <p>Designed a new multilane divided highway in Tallahassee, Florida</p>
+                        <ul class="project-details">
+                            <li><i class="fas fa-check-circle"></i>Designed a 4-lane divided highway (12ft lanes, 10ft/6ft shoulders) in Tallahassee, compliant with AASHTO and FDOT 				    standards.</li>
+                            <li><i class="fas fa-check-circle"></i>Developed and validated a hybrid design alternative that balanced cost, environmental impact, and community needs.</li>
+			    <li><i class="fas fa-check-circle"></i>Optimized roadway geometry with precise superelevation, curvature, and drainage for safety and compliance.</li>
+			    <li><i class="fas fa-check-circle"></i>Delivered construction-ready plans with resolved technical constraints for efficient implementation.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Certifications Section -->
+        <section class="section">
+            <h2>Certifications</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3><i class="fas fa-certificate"></i> Professional</h3>
+                    <ul class="skill-list">
+                        <li>OSHA 30 Certified</li>
+                        <li>Construction Project Management (Columbia)</li>
+                        <li>Oracle Primavera P6</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3><i class="fas fa-graduation-cap"></i> Academic</h3>
+                    <ul class="skill-list">
+                        <li>🎓Masters in Information Technology and Management</li>
+                        <li>🎓Bachelors in Civil Engineering</li>
+                        <li>🎓Diploma in Civil Engineering</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Civil Engineering Contact Button -->
+    <button class="civil-contact-btn" onclick="window.location.href='mailto:naveenkappala076@gmail.com'">
+        <i class="fas fa-hard-hat"></i> Let's Talk
+    </button>
+    
+    <!-- Footer without Twitter/GitHub -->
+    <footer>
+        <div class="footer-content">
+            <h3>Naveen Kappala</h3>
+            <p>Civil Engineering Professional</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/naveen-kappala" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:naveenkappala076@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p>&copy; 2023 All Rights Reserved</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Project image carousel functionality
+        const projectImages = document.querySelectorAll('.project-images');
+        
+        projectImages.forEach(container => {
+            const images = container.querySelectorAll('img');
+            const dots = container.querySelectorAll('.project-nav-dot');
+            let currentIndex = 0;
+            
+            if (images.length > 1) {
+                // Show first image by default
+                images[0].style.display = 'block';
+                dots[0].classList.add('active');
+                
+                setInterval(() => {
+                    images[currentIndex].style.display = 'none';
+                    dots[currentIndex].classList.remove('active');
+                    
+                    currentIndex = (currentIndex + 1) % images.length;
+                    
+                    images[currentIndex].style.display = 'block';
+                    dots[currentIndex].classList.add('active');
+                }, 3000);
+            }
+            
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    images[currentIndex].style.display = 'none';
+                    dots[currentIndex].classList.remove('active');
+                    
+                    currentIndex = index;
+                    
+                    images[currentIndex].style.display = 'block';
+                    dots[currentIndex].classList.add('active');
+                });
+            });
+        });
+        
+        // Animate elements on scroll
+        const animateOnScroll = () => {
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight * 0.75) {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        
+        // Set initial state
+        window.addEventListener('load', () => {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(50px)';
+                section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            });
+            
+            animateOnScroll();
+        });
+        
+        // Animate on scroll
+        window.addEventListener('scroll', animateOnScroll);
+    </script>
+</body>
+</html>
