@@ -14,6 +14,8 @@
             --accent: #ffab00;
             --dark: #263238;
             --light: #f5f5f5;
+            --blue: #4285F4;
+            --blue-dark: #3367D6;
         }
         
         * {
@@ -251,7 +253,6 @@
             box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
         
-        /* Project Image Carousel */
         .project-images {
             height: 200px;
             position: relative;
@@ -321,7 +322,6 @@
             margin-top: 0.2rem;
         }
         
-        /* Experience Section */
         .experience-item {
             background: white;
             padding: 1.5rem;
@@ -380,6 +380,68 @@
             font-size: 1.2rem;
         }
         
+        /* Blue Image Button */
+        .images-btn {
+            position: fixed;
+            right: 2rem;
+            background: var(--blue);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .images-btn:hover {
+            background: var(--blue-dark);
+            transform: translateY(-5px);
+        }
+        
+        #project-images-btn {
+            bottom: 6rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(5px);
+        }
+        
+        .action-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .action-btn i {
+            font-size: 1.1rem;
+        }
+        
         .civil-elements {
             position: absolute;
             z-index: -1;
@@ -431,6 +493,64 @@
             transform: translateY(-5px);
         }
         
+        /* Project Images Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            margin-top: 5%;
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+        
         @media (max-width: 768px) {
             .skills-container {
                 grid-template-columns: 1fr;
@@ -449,9 +569,22 @@
                 align-items: center;
                 gap: 1rem;
             }
+            
+            .civil-contact-btn,
+            .images-btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+            
+            #project-images-btn {
+                bottom: 5rem;
+            }
+            
+            .project-gallery {
+                grid-template-columns: 1fr;
+            }
         }
         
-        /* Animation classes */
         .animate-float {
             animation: float 6s ease-in-out infinite;
         }
@@ -512,53 +645,59 @@
                     LinkedIn Profile
                 </a>
             </div>
+            
+            <div class="action-buttons">
+                <a href="https://naveencivil1.github.io/updated-resume/Naveen.resume.pdf" class="action-btn" id="resume-btn" target="_blank">
+                    <i class="fas fa-file-pdf"></i> View Resume
+                </a>
+            </div>
         </div>
     </header>
     
     <!-- Main Content -->
     <div class="main-container">
-        <!-- About Section - Added based on resume information -->
+        <!-- About Section -->
         <section class="section">
             <h2>About Me</h2>
             <p style="margin-bottom: 1.5rem; line-height: 1.6;">
                 <strong>🔧 Versatile Civil Engineer | 🏢 Structural | ⛰️ Geotech | 🏗️ Construction Management | 🛣️ Highways | 💰 Estimation & Costing</strong>
             </p>
             <p style="line-height: 1.6;">
-                I am a qualified Civil Engineer with specialized skills in structural design, geotechnical analysis, water resources, construction management,highway engineering and 			<strong>project management</strong>. Equipped with a <strong>bachelor’s degree, Diploma in Civil Engineering, and a master’s in project management</strong>, I bring both 		technical precision and strategic oversight to infrastructure projects. What drives me is converting complex calculations into buildable solutions—whether designing 			resilient structures, optimizing construction workflows, or ensuring projects meet their quality, schedule and budget targets.
+                I am a qualified Civil Engineer with specialized skills in structural design, geotechnical analysis, water resources, construction management,highway engineering and <strong>project management</strong>. Equipped with a <strong>bachelor's degree, Diploma in Civil Engineering, and a master's in project management</strong>, I bring both technical precision and strategic oversight to infrastructure projects. What drives me is converting complex calculations into buildable solutions—whether designing resilient structures, optimizing construction workflows, or ensuring projects meet their quality, schedule and budget targets.
             </p>
-	    <p style="line-height: 2.5;">
-		<strong>📜Core Competencies:</strong>
-	    </p>
-	    <p style="line-height: 1.6;">
-		<strong>✔ Structural Engineering</strong> – Proficient in STAAD Pro, IS 456 & AISC standards for resilient designs
-	    </p>
-	    <p style="line-height: 1.6;">
-		<strong>✔ Construction Management</strong> – Skilled in Primavera P6, Bluebeam, and OSHA-compliant execution
-	    </p>
-	    <p style="line-height: 1.6;">
-		<strong>✔ Cost Estimation</strong> – Bluebeam, Power BI for quantity take-offs & bid preparation
-	    </p>
-	    <p style="line-height: 1.6;">
-		<strong>✔ Geotechnical Engineering</strong> – Trained in soil analysis, foundation design, and slope stability
-	    </p>
-	    <p style="line-height: 1.6;">
-		<strong>✔ Highway/Roadworks</strong> – Knowledge of AASHTO standards, drainage design, and earthwork estimation
-	    </p>
-	    <p style="line-height: 2.5;">
-		<strong>💡 What Drives Me:</strong>
-	    </p>
-	    <p style="line-height: 1.6;">
-		To apply my <strong>analytical mindset</strong> and <strong>technical skills</strong> to real-world challenges, with particular interest in sustainable construction 			practices and cost-efficient designs. Eager to contribute to teams where I can grow while adding value through my fresh perspective and up-to-date training.
-	    </p>
-	    <p style="line-height: 3.0;">
-		🎯<i>Ready to work hard, learn quickly, and help build tomorrow's infrastructure.</i>
-	    </p>
-	    <p style="line-height: 1.6;">
-		🌉 <i>Open to roles where I can grow while adding value across the civil engineering spectrum.</i>
-	    </p>
+            <p style="line-height: 2.5;">
+                <strong>📜Core Competencies:</strong>
+            </p>
+            <p style="line-height: 1.6;">
+                <strong>✔ Structural Engineering</strong> – Proficient in STAAD Pro, IS 456 & AISC standards for resilient designs
+            </p>
+            <p style="line-height: 1.6;">
+                <strong>✔ Construction Management</strong> – Skilled in Primavera P6, Bluebeam, and OSHA-compliant execution
+            </p>
+            <p style="line-height: 1.6;">
+                <strong>✔ Cost Estimation</strong> – Bluebeam, Power BI for quantity take-offs & bid preparation
+            </p>
+            <p style="line-height: 1.6;">
+                <strong>✔ Geotechnical Engineering</strong> – Trained in soil analysis, foundation design, and slope stability
+            </p>
+            <p style="line-height: 1.6;">
+                <strong>✔ Highway/Roadworks</strong> – Knowledge of AASHTO standards, drainage design, and earthwork estimation
+            </p>
+            <p style="line-height: 2.5;">
+                <strong>💡 What Drives Me:</strong>
+            </p>
+            <p style="line-height: 1.6;">
+                To apply my <strong>analytical mindset</strong> and <strong>technical skills</strong> to real-world challenges, with particular interest in sustainable construction practices and cost-efficient designs. Eager to contribute to teams where I can grow while adding value through my fresh perspective and up-to-date training.
+            </p>
+            <p style="line-height: 3.0;">
+                🎯<i>Ready to work hard, learn quickly, and help build tomorrow's infrastructure.</i>
+            </p>
+            <p style="line-height: 1.6;">
+                🌉 <i>Open to roles where I can grow while adding value across the civil engineering spectrum.</i>
+            </p>
         </section>
         
-        <!-- Skills Section - Updated with Procore and MS Project -->
+        <!-- Skills Section -->
         <section class="section">
             <h2>Technical Skills</h2>
             <div class="skills-container">
@@ -585,8 +724,8 @@
                         <li>Project Scheduling</li>
                         <li>Risk Management</li>
                         <li>Contract Management</li>
-			<li>Procurement Management</li>
-			<li>Stakeholder Coordination</li>
+                        <li>Procurement Management</li>
+                        <li>Stakeholder Coordination</li>
                     </ul>
                 </div>
                 
@@ -598,8 +737,8 @@
                         <li>Design Review</li>
                         <li>Construction QC</li>
                         <li>Site Supervision</li>
-			<li>Material Testing & Analysis</li>
-			<li>Foundation Engineering</li>
+                        <li>Material Testing & Analysis</li>
+                        <li>Foundation Engineering</li>
                     </ul>
                 </div>
             </div>
@@ -624,18 +763,20 @@
             </div>
         </section>
         
-        <!-- Projects with Multiple Images -->
+        <!-- Projects Section -->
         <section class="section">
             <h2>Featured Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-images">
-                        <img src="https://raw.githubusercontent.com/Naveencivil1/cv/a10a049a062d92561badaa99e8dfc2d5ae24c365/uk96aMQ.jpeg">
-                        <img src="https://raw.githubusercontent.com/Naveencivil1/cv/d5f36e40fb142bbeb7436f821f23bd73c30d7c10/ps-2.jpg">
-			<img src="https://github.com/Naveencivil1/cv/blob/main/IMG20211008123009_Original.jpg?raw=true">
-			<img src="https://github.com/Naveencivil1/cv/blob/main/duct-4.jpg?raw=true">
+                        <img src="https://github.com/Naveencivil1/cv/blob/main/uk96aMQ.jpeg?raw=true">
+                        <img src="https://github.com/Naveencivil1/cv/blob/main/ps-2.jpg?raw=true">
+                        <img src="https://raw.githubusercontent.com/Naveencivil1/cv/6b2a4222eced0dea28399cd930a735f7742af591/IMG20211008123009.jpg">
+                        <img src="https://github.com/Naveencivil1/cv/blob/main/duct-4.jpg?raw=true">
                         <div class="project-nav">
                             <div class="project-nav-dot active"></div>
+                            <div class="project-nav-dot"></div>
+                            <div class="project-nav-dot"></div>
                             <div class="project-nav-dot"></div>
                         </div>
                     </div>
@@ -645,16 +786,16 @@
                         <ul class="project-details">
                             <li><i class="fas fa-check-circle"></i>Delivered 18-22% cost savings by replacing conventional slabs with optimized post-tensioned systems.</li>
                             <li><i class="fas fa-check-circle"></i>Enabled 12m column-free spans using high-strength PC Strands and precision duct layouts.</li>
-			    <li><i class="fas fa-check-circle"></i>Engineered durable M-50 concrete (440kg cement/m³) for 30+ year lifespan in high-rises.</li>
-			    <li><i class="fas fa-check-circle"></i>Solved retrofit flexibility concerns with adjustable tendon spacing and cutting protocols.</li>
+                            <li><i class="fas fa-check-circle"></i>Engineered durable M-50 concrete (440kg cement/m³) for 30+ year lifespan in high-rises.</li>
+                            <li><i class="fas fa-check-circle"></i>Solved retrofit flexibility concerns with adjustable tendon spacing and cutting protocols.</li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="project-card">
                     <div class="project-images">
-                        <img src="https://raw.githubusercontent.com/Naveencivil1/cv/d5f36e40fb142bbeb7436f821f23bd73c30d7c10/g+4-3.jpg">
-                        <img src="https://raw.githubusercontent.com/Naveencivil1/cv/d5f36e40fb142bbeb7436f821f23bd73c30d7c10/g+4%20-2.jpg">
+                        <img src="https://github.com/Naveencivil1/cv/blob/main/g+4-3.jpg?raw=true">
+                        <img src="https://github.com/Naveencivil1/cv/blob/main/g+4%20-2.jpg?raw=true">
                         <div class="project-nav">
                             <div class="project-nav-dot active"></div>
                             <div class="project-nav-dot"></div>
@@ -666,16 +807,16 @@
                         <ul class="project-details">
                             <li><i class="fas fa-check-circle"></i>Designed a G+4 residential building (1400 sqm, 72 columns) using STAAD Pro, compliant with IS 456 standards.</li>
                             <li><i class="fas fa-check-circle"></i>Verified structural integrity with 95% alignment between manual calculations and STAAD Pro analysis results.</li>
-			    <li><i class="fas fa-check-circle"></i>Achieved 15% steel reduction in beams/slabs through STAAD Pro optimization while meeting IS 456 deflection limits.</li>
-			    <li><i class="fas fa-check-circle"></i>Developed constructible drawings with clear reinforcement detailing for error-free site execution.</li>
+                            <li><i class="fas fa-check-circle"></i>Achieved 15% steel reduction in beams/slabs through STAAD Pro optimization while meeting IS 456 deflection limits.</li>
+                            <li><i class="fas fa-check-circle"></i>Developed constructible drawings with clear reinforcement detailing for error-free site execution.</li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="project-card">
                     <div class="project-images">
-                        <img src="https://raw.githubusercontent.com/Naveencivil1/cv/d5f36e40fb142bbeb7436f821f23bd73c30d7c10/r-9.jpg">
-                        <img src="https://raw.githubusercontent.com/Naveencivil1/cv/d5f36e40fb142bbeb7436f821f23bd73c30d7c10/r-2.jpg">
+                        <img src="https://github.com/Naveencivil1/cv/blob/main/r-9.jpg?raw=true">
+                        <img src="https://github.com/Naveencivil1/cv/blob/main/r-2.jpg?raw=true">
                         <div class="project-nav">
                             <div class="project-nav-dot active"></div>
                             <div class="project-nav-dot"></div>
@@ -685,10 +826,10 @@
                         <h3>Southwood Plantation Road Realignment</h3>
                         <p>Designed a new multilane divided highway in Tallahassee, Florida</p>
                         <ul class="project-details">
-                            <li><i class="fas fa-check-circle"></i>Designed a 4-lane divided highway (12ft lanes, 10ft/6ft shoulders) in Tallahassee, compliant with AASHTO and FDOT 				    standards.</li>
+                            <li><i class="fas fa-check-circle"></i>Designed a 4-lane divided highway (12ft lanes, 10ft/6ft shoulders) in Tallahassee, compliant with AASHTO and FDOT standards.</li>
                             <li><i class="fas fa-check-circle"></i>Developed and validated a hybrid design alternative that balanced cost, environmental impact, and community needs.</li>
-			    <li><i class="fas fa-check-circle"></i>Optimized roadway geometry with precise superelevation, curvature, and drainage for safety and compliance.</li>
-			    <li><i class="fas fa-check-circle"></i>Delivered construction-ready plans with resolved technical constraints for efficient implementation.</li>
+                            <li><i class="fas fa-check-circle"></i>Optimized roadway geometry with precise superelevation, curvature, and drainage for safety and compliance.</li>
+                            <li><i class="fas fa-check-circle"></i>Delivered construction-ready plans with resolved technical constraints for efficient implementation.</li>
                         </ul>
                     </div>
                 </div>
@@ -720,12 +861,46 @@
         </section>
     </div>
     
-    <!-- Civil Engineering Contact Button -->
+    <!-- Project Images Button -->
+    <button class="images-btn" id="project-images-btn">
+        <i class="fas fa-images"></i> Project Images
+    </button>
+    
+    <!-- Green Contact Button -->
     <button class="civil-contact-btn" onclick="window.location.href='mailto:naveenkappala076@gmail.com'">
         <i class="fas fa-hard-hat"></i> Let's Talk
     </button>
     
-    <!-- Footer without Twitter/GitHub -->
+    <!-- Project Images Modal -->
+    <div id="projectModal" class="modal">
+        <span class="close">&times;</span>
+        <div class="project-gallery">
+            <div class="gallery-item">
+                            <div class="gallery-item">
+                <img src="https://raw.githubusercontent.com/Naveencivil1/cv/6b2a4222eced0dea28399cd930a735f7742af591/IMG20211008123009.jpg" alt="Project Image 3">
+            </div>
+            <div class="gallery-item">
+                <img src="https://github.com/Naveencivil1/cv/blob/main/duct-4.jpg?raw=true" alt="Project Image 4">
+            </div>
+            <div class="gallery-item">
+                <img src="https://github.com/Naveencivil1/cv/blob/main/IMG20211009120319.jpg?raw=true" alt="Project Image 9">
+            </div>
+	    <div class="gallery-item">
+                <img src="https://raw.githubusercontent.com/Naveencivil1/cv/0b40df25aee38bc588bdaa1bf5047c3e93d3ab43/AD-P6.jpg">
+            </div>
+	    <div class="gallery-item">
+                <img src="https://raw.githubusercontent.com/Naveencivil1/cv/0b40df25aee38bc588bdaa1bf5047c3e93d3ab43/P6-L.jpg">
+            </div>
+	    <div class="gallery-item">
+                <img src="https://raw.githubusercontent.com/Naveencivil1/cv/0b40df25aee38bc588bdaa1bf5047c3e93d3ab43/CM.jpg">
+            </div>
+	    <div class="gallery-item">
+                <img src="https://raw.githubusercontent.com/Naveencivil1/cv/0b40df25aee38bc588bdaa1bf5047c3e93d3ab43/ML-L.jpg">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <h3>Naveen Kappala</h3>
@@ -773,6 +948,60 @@
                     images[currentIndex].style.display = 'block';
                     dots[currentIndex].classList.add('active');
                 });
+            });
+        });
+        
+        // Project Images Modal functionality
+        const modal = document.getElementById("projectModal");
+        const btn = document.getElementById("project-images-btn");
+        const span = document.getElementsByClassName("close")[0];
+        
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        
+        // Make gallery images clickable to view larger
+        const galleryImages = document.querySelectorAll('.gallery-item img');
+        galleryImages.forEach(img => {
+            img.addEventListener('click', function() {
+                const modalImg = document.createElement('img');
+                modalImg.className = 'modal-content';
+                modalImg.src = this.src;
+                modalImg.alt = this.alt;
+                
+                const imgModal = document.createElement('div');
+                imgModal.className = 'modal';
+                imgModal.style.display = 'block';
+                
+                const closeSpan = document.createElement('span');
+                closeSpan.className = 'close';
+                closeSpan.innerHTML = '&times;';
+                
+                imgModal.appendChild(closeSpan);
+                imgModal.appendChild(modalImg);
+                document.body.appendChild(imgModal);
+                
+                closeSpan.onclick = function() {
+                    imgModal.style.display = 'none';
+                    imgModal.remove();
+                }
+                
+                imgModal.onclick = function(event) {
+                    if (event.target == imgModal) {
+                        imgModal.style.display = 'none';
+                        imgModal.remove();
+                    }
+                }
             });
         });
         
